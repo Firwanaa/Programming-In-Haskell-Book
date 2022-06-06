@@ -160,7 +160,7 @@ and' (x:xs) | x == False = False
 
 concat' :: [[a]] -> [a]
 concat' [] = []
-concat' (x:xs) = x ++ (concat' xs)
+concat' (xs:xss) = xs ++ (concat' xss)
 
 replicate' :: Int -> a -> [a]
 replicate' 0 x = []

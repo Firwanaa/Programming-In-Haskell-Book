@@ -1,0 +1,166 @@
+#+Title: Programming in Haskell - Graham Hutton
+#+PROPERTY: header-argS :tangle Exercises.hs
+Using Doom Emacs Org Mode with Haskell to organize questions and answers
+* TABLE OF CONTENTS :toc:
+- [[#chapter-5][Chapter 5]]
+  - [[#list-comprehensions-ch-5-exercises][List Comprehensions Ch 5 Exercises]]
+  - [[#imports][Imports]]
+  - [[#exercise-1][Exercise 1]]
+  - [[#exercise-2][Exercise 2]]
+  - [[#exercise-3][Exercise 3]]
+  - [[#exercise-4][Exercise 4]]
+  - [[#exercise-5][Exercise 5]]
+  - [[#exercise-6][Exercise 6]]
+  - [[#exercise-7][Exercise 7]]
+  - [[#exercise-8][Exercise 8]]
+- [[#chapter-6][Chapter 6]]
+  - [[#recursive-functions---ch6-exercises][Recursive Functions - Ch6 Exercises]]
+  - [[#exercise-1-1][Exercise 1]]
+  - [[#exercise-3-1][Exercise 3]]
+  - [[#exercise-4-1][Exercise 4]]
+  - [[#exercise-6-1][Exercise 6]]
+  - [[#exercise-7-1][Exercise 7]]
+  - [[#exercise-8-1][Exercise 8]]
+- [[#chapter-7][Chapter 7]]
+- [[#chapter-8][Chapter 8]]
+- [[#chapter-9][Chapter 9]]
+
+* Chapter 5
+** List Comprehensions Ch 5 Exercises
+
+** Imports
+#+begin_src haskell
+module Exercises where
+import Data.List
+import System.IO
+#+end_src
+
+** Exercise 1
+#+begin_src haskell
+sumSqr = sum [x^2 | x <- [1..100]]
+#+end_src
+
+** Exercise 2
+#+begin_src haskell
+grid n m = [(x,y) | x <- [0..m], y <- [0..n]]
+#+end_src
+
+
+** Exercise 3
+#+begin_src haskell
+sqrGrid n = [(x,y) | (x, y) <- grid n n, x /= y]
+#+end_src
+
+
+** Exercise 4
+#+begin_src haskell
+replicate n x = [ x | _ <-[1..n]]
+#+end_src
+
+** Exercise 5
+#+begin_src haskell
+pyths n = [(x,y,z) | x <- [1..n],
+                     y <- [1..n],
+                     z <- [1..n],
+                     x^2 + y^2 == z^2]
+#+end_src
+** Exercise 6
+#+begin_src haskell
+factors n = [x | x <- [1..n-1], n `mod` x == 0]
+perfects n = [x | x <- [1..n], sum (factors x) == x]
+-- another way
+factors' n = [x | x <- [1..n], n `mod` x == 0]
+isPerfect n = sum (init (factors' n)) == n -- init will drop last element
+perfect n = [x | x <- [1..n], isPerfect x]
+#+End_src
+** Exercise 7
+#+begin_src haskell
+com1 = [x | x <- [1,2] ]
+com2 = [y | y <- [3,4] ]
+coms = concat [com1, com2]
+#+End_src
+** Exercise 8
+#+begin_src haskell
+scalarproduct :: [Int] -> [Int] -> Int
+scalarproduct xs ys = sum [xs !! i * ys !! i | i <- [0.. (length xs - 1)]]
+-- another way
+scalarproduct' xs ys = sum [x*y | (x,y) <- zip xs ys]
+#+End_src
+
+* Chapter 6
+** Recursive Functions - Ch6 Exercises
+
+** Exercise 1
+#+begin_src haskell
+fac :: Int -> Int
+fac 0 = 1
+fac n | n > 0 = n * fac (n - 1)
+#+End_src
+
+** Exercise 3
+#+begin_src haskell
+-- (^) :: Int -> Int -> Int
+-- m ^ 0 = 1
+-- m ^ n = m * (m ^ (n-1))
+#+End_src
+
+** Exercise 4
+#+begin_src haskell
+euclid :: Int -> Int -> Int
+euclid m n | m == n = m
+           | m < n = euclid m (n - m)
+           | m > n = euclid (m - n) n
+#+End_src
+
+** Exercise 6
+#+begin_src haskell
+and' :: [Bool] -> Bool
+and' [] = True
+and' (x:xs) | x == False = False
+            | otherwise = and xs
+
+concat' :: [[a]] -> [a]
+concat' [] = []
+concat' (x:xs) = x ++ (concat' xs)
+
+replicate' :: Int -> a -> [a]
+replicate' 0 x = []
+replicate' n x = x:replicate' (n-1) x
+
+(!!@) :: [a] -> Int -> a
+(!!@) (x:xs) 0 = x
+(!!@) (x:xs) n = (!!@) xs (n-1)
+
+elem' :: Eq a => a -> [a] -> Bool
+elem' x [] = False
+elem' e (x:xs) | x == e = True
+               | otherwise = elem' e xs
+#+End_src
+
+** Exercise 7
+#+begin_src haskell
+merge' :: Ord a => [a] -> [a] -> [a]
+merge' [] [] = []
+merge' [] xs = xs
+merge' ys [] = ys
+merge' (x:xs) (y:ys) | x <= y = x:merge' xs (y:ys)
+                     | otherwise = y: merge' ys (x:xs)
+#+End_src
+
+** Exercise 8
+#+begin_src haskell
+halve :: [a] -> ([a], [a])
+halve xs = (take n xs, drop n xs)
+           where n = length `div` 2
+
+msort' :: Ord a => [a] -> [a]
+
+#+End_src
+
+
+
+* Chapter 7
+* Chapter 8
+* Chapter 9
+
+

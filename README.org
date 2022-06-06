@@ -152,7 +152,7 @@ euclid m n | m == n = m
 #+End_src
 
 ** Exercise 6
--- Insert exercise is from Prof. Hutton YouTube channel [[[[https://youtu.be/I9S61BYM9_4]]][Link]]
+-- Insert exercise is from Prof. Hutton YouTube channel [[[https://youtu.be/I9S61BYM9_4][Link]]]
 #+begin_src haskell
 and' :: [Bool] -> Bool
 and' [] = True

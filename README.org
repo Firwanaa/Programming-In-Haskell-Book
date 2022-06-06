@@ -1,6 +1,6 @@
 #+Title: Programming in Haskell - Graham Hutton
 #+PROPERTY: header-argS :tangle Exercises.hs
-Using Doom Emacs Org Mode with Haskell to organize questions and answers
+Using Emacs Org Mode with Haskell to organize questions and answers
 * TABLE OF CONTENTS :toc:
   - [[#imports][Imports]]
 - [[#chapter-3][Chapter 3]]

@@ -152,7 +152,7 @@ euclid m n | m == n = m
 #+End_src
 
 ** Exercise 6
-"Insert" exercise is from Prof. Hutton YouTube channel [[https://youtu.be/I9S61BYM9_4][Link]]
+"insert'" and "isort'" exercises are from Prof. Hutton's YouTube channel [[https://youtu.be/I9S61BYM9_4][Link]]
 #+begin_src haskell
 and' :: [Bool] -> Bool
 and' [] = True
@@ -171,6 +171,15 @@ replicate' n x = x:replicate' (n-1) x
 (!!@) (x:_) 0 = x
 (!!@) (_:xs) n = (!!@) xs (n-1)
 
+insert' :: Int -> [Int] -> [Int]
+insert' x [] = [x]
+insert' n (x:xs) | n <= x = n:x:xs
+                 | otherwise = x:insert' n xs
+
+-- Insertion sort
+isort' :: [Int] -> [Int]
+isort' [] = []
+isort' (x:xs) = insert' x (isort' xs)
 
 elem' :: Eq a => a -> [a] -> Bool
 elem' x [] = False
@@ -184,7 +193,7 @@ merge' :: Ord a => [a] -> [a] -> [a]
 merge' [] [] = []
 merge' [] xs = xs
 merge' ys [] = ys
-merge' (x:xs) (y:ys) | x <= y = x:merge' xs (y:ys)
+merge' (x:xs) (y:ys) | x < y = x:merge' xs (y:ys)
                      | otherwise = y: merge' ys (x:xs)
 #+End_src
 
@@ -193,9 +202,12 @@ merge' (x:xs) (y:ys) | x <= y = x:merge' xs (y:ys)
 halve' :: [a] -> ([a], [a])
 halve' xs = (take n xs, drop n xs)
            where n = length xs `div` 2
-
--- msort' :: Ord a => [a] -> [a]
-
+-- merge sort
+msort' :: Ord a => [a] -> [a]
+msort' [] = []
+msort' [x] = [x]
+msort' xs = merge' (msort' ys) (msort' zs)
+            where (ys, zs) = halve' xs
 #+End_src
 
 

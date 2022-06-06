@@ -78,15 +78,25 @@ and' (x:xs) | x == False = False
 
 concat' :: [[a]] -> [a]
 concat' [] = []
-concat' (x:xs) = x ++ (concat' xs)
+concat' (xs:xss) = xs ++ (concat' xss)
 
 replicate' :: Int -> a -> [a]
 replicate' 0 x = []
 replicate' n x = x:replicate' (n-1) x
 
 (!!@) :: [a] -> Int -> a
-(!!@) (x:xs) 0 = x
-(!!@) (x:xs) n = (!!@) xs (n-1)
+(!!@) (x:_) 0 = x
+(!!@) (_:xs) n = (!!@) xs (n-1)
+
+insert' :: Int -> [Int] -> [Int]
+insert' x [] = [x]
+insert' n (x:xs) | n <= x = n:x:xs
+                 | otherwise = x:insert' n xs
+
+-- Insertion sort
+isort' :: [Int] -> [Int]
+isort' [] = []
+isort' (x:xs) = insert' x (isort' xs)
 
 elem' :: Eq a => a -> [a] -> Bool
 elem' x [] = False
@@ -97,11 +107,15 @@ merge' :: Ord a => [a] -> [a] -> [a]
 merge' [] [] = []
 merge' [] xs = xs
 merge' ys [] = ys
-merge' (x:xs) (y:ys) | x <= y = x:merge' xs (y:ys)
+merge' (x:xs) (y:ys) | x < y = x:merge' xs (y:ys)
                      | otherwise = y: merge' ys (x:xs)
 
 halve' :: [a] -> ([a], [a])
 halve' xs = (take n xs, drop n xs)
            where n = length xs `div` 2
-
--- msort' :: Ord a => [a] -> [a]
+-- merge sort
+msort' :: Ord a => [a] -> [a]
+msort' [] = []
+msort' [x] = [x]
+msort' xs = merge' (msort' ys) (msort' zs)
+            where (ys, zs) = halve' xs

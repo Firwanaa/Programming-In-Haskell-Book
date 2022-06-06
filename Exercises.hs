@@ -2,6 +2,33 @@ module Exercises where
 import Data.List
 import System.IO
 
+-- 1
+-- [Char]
+-- (Char, Char, Char)
+-- [(Bool, Char)]
+-- ([Bool], [Char])
+-- [a]
+-- 2
+-- [True, False]
+-- [[1,2],[2,4]]
+-- f a b c = a + b + c
+-- f x = (x,x)
+-- f x = f x
+-- 3
+-- second :: [a] -> a
+-- swap :: (a,b) -> (b,a)
+-- pair :: a -> b -> (a,b)
+-- double :: Num a => a -> a
+-- palindrome :: Eq a => [a] -> Bool -- cheated
+-- twice :: (a->b) -> a -> b
+
+halve xs = (take n xs, drop n xs)
+  where n = length xs `div` 2
+
+third1 xs = head (tail (tail xs))
+third2 xs = xs !! 2
+third3 (_:_:x:_) = x
+
 sumSqr = sum [x^2 | x <- [1..100]]
 
 grid n m = [(x,y) | x <- [0..m], y <- [0..n]]
@@ -47,7 +74,7 @@ euclid m n | m == n = m
 and' :: [Bool] -> Bool
 and' [] = True
 and' (x:xs) | x == False = False
-           | otherwise = and xs
+            | otherwise = and xs
 
 concat' :: [[a]] -> [a]
 concat' [] = []
@@ -72,3 +99,9 @@ merge' [] xs = xs
 merge' ys [] = ys
 merge' (x:xs) (y:ys) | x <= y = x:merge' xs (y:ys)
                      | otherwise = y: merge' ys (x:xs)
+
+halve' :: [a] -> ([a], [a])
+halve' xs = (take n xs, drop n xs)
+           where n = length xs `div` 2
+
+-- msort' :: Ord a => [a] -> [a]

@@ -2,11 +2,15 @@
 #+PROPERTY: header-argS :tangle Exercises.hs
 Using Doom Emacs Org Mode with Haskell to organize questions and answers
 * TABLE OF CONTENTS :toc:
-- [[#chapter-5][Chapter 5]]
-  - [[#list-comprehensions-ch-5-exercises][List Comprehensions Ch 5 Exercises]]
   - [[#imports][Imports]]
+- [[#chapter-3][Chapter 3]]
+- [[#chapter-4][Chapter 4]]
   - [[#exercise-1][Exercise 1]]
   - [[#exercise-2][Exercise 2]]
+- [[#chapter-5][Chapter 5]]
+  - [[#list-comprehensions-ch-5-exercises][List Comprehensions Ch 5 Exercises]]
+  - [[#exercise-1-1][Exercise 1]]
+  - [[#exercise-2-1][Exercise 2]]
   - [[#exercise-3][Exercise 3]]
   - [[#exercise-4][Exercise 4]]
   - [[#exercise-5][Exercise 5]]
@@ -15,7 +19,7 @@ Using Doom Emacs Org Mode with Haskell to organize questions and answers
   - [[#exercise-8][Exercise 8]]
 - [[#chapter-6][Chapter 6]]
   - [[#recursive-functions---ch6-exercises][Recursive Functions - Ch6 Exercises]]
-  - [[#exercise-1-1][Exercise 1]]
+  - [[#exercise-1-2][Exercise 1]]
   - [[#exercise-3-1][Exercise 3]]
   - [[#exercise-4-1][Exercise 4]]
   - [[#exercise-6-1][Exercise 6]]
@@ -25,15 +29,50 @@ Using Doom Emacs Org Mode with Haskell to organize questions and answers
 - [[#chapter-8][Chapter 8]]
 - [[#chapter-9][Chapter 9]]
 
-* Chapter 5
-** List Comprehensions Ch 5 Exercises
-
 ** Imports
 #+begin_src haskell
 module Exercises where
 import Data.List
 import System.IO
 #+end_src
+
+* Chapter 3
+#+begin_src haskell
+-- 1
+-- [Char]
+-- (Char, Char, Char)
+-- [(Bool, Char)]
+-- ([Bool], [Char])
+-- [a]
+-- 2
+-- [True, False]
+-- [[1,2],[2,4]]
+-- f a b c = a + b + c
+-- f x = (x,x)
+-- f x = f x
+-- 3
+-- second :: [a] -> a
+-- swap :: (a,b) -> (b,a)
+-- pair :: a -> b -> (a,b)
+-- double :: Num a => a -> a
+-- palindrome :: Eq a => [a] -> Bool -- cheated
+-- twice :: (a->b) -> a -> b
+#+end_src
+* Chapter 4
+** Exercise 1
+#+begin_src haskell
+halve xs = (take n xs, drop n xs)
+  where n = length xs `div` 2
+#+end_src
+** Exercise 2
+#+begin_src haskell
+third1 xs = head (tail (tail xs))
+third2 xs = xs !! 2
+third3 (_:_:x:_) = x
+#+end_src
+* Chapter 5
+** List Comprehensions Ch 5 Exercises
+
 
 ** Exercise 1
 #+begin_src haskell
@@ -149,11 +188,11 @@ merge' (x:xs) (y:ys) | x <= y = x:merge' xs (y:ys)
 
 ** Exercise 8
 #+begin_src haskell
-halve :: [a] -> ([a], [a])
-halve xs = (take n xs, drop n xs)
-           where n = length `div` 2
+halve' :: [a] -> ([a], [a])
+halve' xs = (take n xs, drop n xs)
+           where n = length xs `div` 2
 
-msort' :: Ord a => [a] -> [a]
+-- msort' :: Ord a => [a] -> [a]
 
 #+End_src
 

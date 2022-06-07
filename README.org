@@ -1,8 +1,9 @@
 #+Title: Programming in Haskell - Graham Hutton
+#+OPTIONS: broken-links:t
 #+PROPERTY: header-argS :tangle Exercises.hs
 Using Emacs Org Mode with Haskell to organize questions and answers
 * TABLE OF CONTENTS :toc:
-  - [[#imports][Imports]]
+- [[#imports][Imports]]
 - [[#chapter-3][Chapter 3]]
 - [[#chapter-4][Chapter 4]]
   - [[#exercise-1][Exercise 1]]
@@ -29,7 +30,7 @@ Using Emacs Org Mode with Haskell to organize questions and answers
 - [[#chapter-8][Chapter 8]]
 - [[#chapter-9][Chapter 9]]
 
-** Imports
+* Imports
 #+begin_src haskell
 module Exercises where
 import Data.List

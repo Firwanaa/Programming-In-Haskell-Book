@@ -224,58 +224,57 @@ msort' xs = merge' (msort' ys) (msort' zs)
 * Thinking Recursively - Sum function as example
 From Prof. Hutton's YouTube channel [[https://youtu.be/n6bg8L91Qew][Link]]
 ** 1- Name the function
-- sum
+# sum
 ** 2- Write down its type
-- sum :: [Int] -> Int
+# sum :: [Int] -> Int
 ** 3- Enumerate the cases - The skeleton
-- sum [] =
-- sum (x:xs) =
+# sum [] =
+# sum (x:xs) =
 ** 4- Define the simple cases
-- sum [] = 0
+# sum [] = 0
 ** 5- List the "ingredients"
-What are the options to fill the right side?
+# What are the options to fill the right side?
 ** 6- Define the other cases
-- sum (x:xs) = x + sum xs
+# sum (x:xs) = x + sum xs
 ** 7- Think about the result
-We can generalize the type
-- sum :: Num a => [a] -> a
-Can we simplify the definition?.
-- sum = foldr (+) 0
+# We can generalize the type
+# sum :: Num a => [a] -> a
+# Can we simplify the definition?.
+# sum = foldr (+) 0
 
 *** Define a function that drops a given number  of elements from the start of list.
-1- Name
-- drop
-2- Type
-- drop :: Int-> [a] - [a]
-3- Enumerate the cases
-- drop _ [] =
-- drop 0 (x:xs) =
-- drop n (x:xs) =
-4- Define simple cases
-- drop _ [] = []
-- drop 0 (x:xs) = x:xs
-5- List the ingredients
-6- Define the other cases
-- drop n (x:xs) = drop (n-1) xs
-7- Think about the result
-- drop 0 xs = xs
-- drop _ [] = []
-  drop n (_:xs) = drop (n-1) xs
+# 1- Name
+# drop
+# 2- Type
+# drop :: Int-> [a] - [a]
+# 3- Enumerate the cases
+# drop _ [] =
+# drop 0 (x:xs) =
+# drop n (x:xs) =
+# 4- Define simple cases
+# drop _ [] = []
+# drop 0 (x:xs) = x:xs
+# 5- List the ingredients
+# 6- Define the other cases
+# drop n (x:xs) = drop (n-1) xs
+# 7- Think about the result
+# drop 0 xs = xs
+# drop _ [] = []
+#   drop n (_:xs) = drop (n-1) xs
 
 *** Define a function that removes the last element from ta non-empty list:
-1- init
-2- init :: [a] -> [a]
-3- init (x:xs)
-4- no simple cases
-5- Ingredients: x, xs, inint and whatever available in the standard ed library
-6- - init (x:xs) | null xs = [] -- means the list contains only one element x
-                 | otherwise = x: init xs
+# 1- init
+# 2- init :: [a] -> [a]
+# 3- init (x:xs)
+# 4- no simple cases
+# 5- Ingredients: x, xs, inint and whatever available in the standard ed library
+# 6-  init (x:xs) | null xs = [] -- means the list contains only one element x
+#                 | otherwise = x: init xs
 
-7-
-  - init :: [a] -> [a]
-  - init [_] = []
-  - init (x:xs) = x init xs
-
+# 7-
+#   init :: [a] -> [a]
+#   init [_] = []
+#   init (x:xs) = x init xs
 
 
 * Chapter 7

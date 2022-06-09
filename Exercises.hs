@@ -162,3 +162,16 @@ iterate f = unfold'
 
 iterate f = unfold (const False) id f -- totally cheating.
 -- will come back to the rest later
+
+-- Only the ones Prof Hutton solved on his YT channel
+-- Exercise
+-- 1 - Using recursion and function add, define a function that
+--     multiplies two natural numbers.
+mult :: Nat -> Nat -> Nat
+mult Zero m = Zero
+mult (Succ n) m = add (mult n m) m
+
+-- test on ghci
+-- res = mult (Succ (Succ (Succ Zero))) (Succ (Succ Zero))
+-- print $ nat2int res
+-- 6

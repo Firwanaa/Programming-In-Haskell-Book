@@ -163,7 +163,6 @@ iterate f = unfold'
 iterate f = unfold (const False) id f -- totally cheating.
 -- will come back to the rest later
 
--- Only the ones Prof Hutton solved on his YT channel
 -- Exercise
 -- 1 - Using recursion and function add, define a function that
 --     multiplies two natural numbers.
@@ -175,3 +174,24 @@ mult (Succ n) m = add (mult n m) m
 -- res = mult (Succ (Succ (Succ Zero))) (Succ (Succ Zero))
 -- print $ nat2int res
 -- 6
+
+-- 2 - Define a suitable function folde for expressions and give
+--     a few examples of its use.
+data Expr' = Val' Int | Add' Expr' Expr'
+folde :: (Int -> a) -> (a -> a -> a) -> Expr' a
+folde f g (Val' n) = n
+folde f g (Add ex1 ex2) = g (folde f g ex1) (fold f g ex2)
+
+-- 3 - Define typ "Tree a" of binary trees built from "Leaf"
+--     values of type a using a Node constructor that takes two binary trees
+--      as parameters.
+data Tree' a = Leaf' a
+             | Node' (Tree' a) (Tree' a)
+
+-- different types of trees
+data Tree1 a = Leaf1 a | Node1 (Tree1 a) (Tree1 a) -- data in leaves only
+data Tree2 a = Leaf2 | Node2 (Tree2 a) a (Tree2 a) -- data in Nodes only
+data Tree3 a b = Leaf3 a | Node3 (Tree3 a b) b (Tree3 a b) -- different data in both leaves and nodes
+data Tree4 a = Node4 a [Tree4 a] -- List of subtrees, empty List willserve as leafe
+
+-- will come back to the rest of the questions later

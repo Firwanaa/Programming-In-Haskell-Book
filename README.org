@@ -314,6 +314,17 @@ curry' f = \x y -> f (x , y)
 -- uncurry
 uncurry' :: (a -> b -> c) -> ((a, b) -> c)
 uncurry' f = \(x,y) -> f x y
+
+-- unfold
+unfold' p h t x | p x = []
+               | otherwise = h x : unfold p h t (t x)
+int2bin' = unfold' (== 0) (`mod` 2) (`div` 2)
+chop8' = unfold' (== []) (take 8) (drop 8)
+map' f = unfold' null (f.head) tail
+iterate f = unfold'
+
+iterate f = unfold (const False) id f -- totally cheating.
+-- will come back to the rest later
 #+end_src
 
 * Chapter 8

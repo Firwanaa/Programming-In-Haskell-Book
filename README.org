@@ -1,6 +1,9 @@
-#+Title: Programming in Haskell - Graham Hutton
-#+PROPERTY: header-argS :tangle Exercises.hs
-#+auto-tangle: t
+#+TITLE: Programming in Haskell - Graham Hutton
+#+AUTHOR: Firwanaa
+#+PROPERTY: header-args :tangle Exercises.hs
+#+auto_tangle: t
+#+STARTUP: showeverything
+
 Using Emacs Org Mode with Haskell to organize questions and answers
 * TABLE OF CONTENTS :toc:
 - [[#imports][Imports]]

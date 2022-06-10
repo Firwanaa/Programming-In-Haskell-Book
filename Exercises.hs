@@ -195,3 +195,39 @@ data Tree3 a b = Leaf3 a | Node3 (Tree3 a b) b (Tree3 a b) -- different data in 
 data Tree4 a = Node4 a [Tree4 a] -- List of subtrees, empty List willserve as leafe
 
 -- will come back to the rest of the questions later
+
+choices :: [a] -> [[a]]
+choices xs = [ys | yss <- subs xs, ys <- perms yss]
+
+dropfirst :: [Eq] => a -> [a] -> [a]
+dropfirst x [] = []
+dropfirst x (y:yss) | x == y = ys
+                    | otherwise = drpfirst x ys
+
+isChoice :: Eq => [a] -> [a]
+isChoice [] _ = True
+isChoice (x:xs) [] = False
+isChoice (x:Xs) ys = elem x ys && isChoice xs (dropfirst x ys)
+
+data Op = Add | Sub | Mul | Div | Exp
+
+instance Show Op where
+  show Add = "+"
+  show Sub = "-"
+  show Mul = "*"
+  show Div = "/"
+  show Exp = "^"
+
+valid :: Op -> Int -> Int -> Bool
+valid Add x y = x <=y
+valid Sub x y = x > y
+valid Mul x y = x /= 1 && y/= 1 && x <= y
+valid Div x y = y /= 1 && x `mod` y == 0
+valid Exp x y = y  >= 0
+
+apply :: Op -> Int -> Int -> Int
+apply Add x y = x + y
+apply Sub x y = x - y
+apply Mul x y = x * y
+apply Div x y = x `div` y
+apply Exp x y = x ^ y
